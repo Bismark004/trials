@@ -1,6 +1,6 @@
 // MovieList.js
 import React, { useState, useEffect } from 'react';
-import { fetchMovieData } from './api';
+import { fetchMovieData } from '../api';
 
 function MovieList() {
   const [movies, setMovies] = useState([]);

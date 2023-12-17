@@ -6,12 +6,8 @@ import MovieDetails from './Components/MovieDetails';
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route exact path="/" component={MovieList} />
-        <Route path="/movie/:id" component={MovieDetails} />
-      </Routes>
-    </Router>
+    <MovieList/>
+
   );
 }
 
