@@ -6,7 +6,13 @@ import MovieDetails from './Components/MovieDetails';
 
 function App() {
   return (
-    <MovieList/>
+    <Router>
+      <Routes>
+        <Route exact path="/" element={<MovieList/>}/>
+        <Route path="/movie/:id" element={<MovieDetails/>}/>
+      </Routes>
+    </Router>
+
 
   );
 }

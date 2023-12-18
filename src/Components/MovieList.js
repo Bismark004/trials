@@ -1,6 +1,7 @@
 // MovieList.js
 import React, { useState, useEffect } from 'react';
 import { fetchMovieData } from '../api';
+import { Link } from 'react-router-dom';
 
 function MovieList() {
   const [movies, setMovies] = useState([]);
@@ -35,8 +36,11 @@ function MovieList() {
       <h1>Movies:</h1>
       {movies.map(movie => (
         <div key={movie.imdbID}>
+        <Link to={`/movie/${movie.imdbID}`}>
           <p>{movie.Title}</p>
           <img src={movie.Poster} alt={`Movie Poster ${movie.imdbID}`} />
+  
+        </Link>
         </div>
       ))}
     </div>
