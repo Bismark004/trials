@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+      body {
+        margin: 0;
+        width: 100vw;
+        height: 10vh;
+        overflow: hidden;
+      }
+
+      #evil-button {
+        position: absolute;
+        white-space: nowrap;
+        font-size: 2rem;
+      }
+    </style>
+</head>
+<body>
+    <button id="eveil-button" >Cant touch me</button>
+    <script>
+        const eveilButton = document.getElementById("eveil-button");
+        eveilButton.addEventListener("click", () => {
+            alert('nice try');
+            window.close();
+        });
+
+        document.addEventListener("mousemove", (e)  => {
+            const x = e.pageX;
+            const y = e.pageY;
+            const buttonBox = eveilButton.getBoundingClientRect(); 
+            const horizontalDistanceFrom = distanceFromCenter(buttonBox.x, x, buttonBox.width);
+            const verticalDistanceFrom = distanceFromCenter(buttonBox.y, y, buttonBox.height);
+            const horizontalOffset = buttonBox.width / 2 + OFFSET;
+            const verticalOffset = buttonBox.height / 2 + OFFSET;
+
+            if (Math.abs(horizontalDistanceFrom) <= horizontalOffset && Math.abs(verticalDistanceFrom) <= verticalOffset){
+                setButtonPosition(
+                    buttonBox.x + horizontalOffset / horizontalDistanceFrom * 10,
+                    buttonBox.x + verticalOffset / verticalDistanceFrom * 10
+                )
+            };
+            
+        })
+
+        function setButtonPosition(left, top) {
+            const WindowBox = document.body.getBoundingClientRect(); 
+            const buttonBox = evilButton.getBoundingClientRect();
+            
+            if(distanceFromCenter(left, WindowBox.left, buttonBox.width) < 0) {
+                left = windowBox.right - buttonBox.width - OFFSET;
+
+            }
+
+            if(distanceFromCenter(left, WindowBox.right, buttonBox.width) < 0) {
+                left = windowBox.left + OFFSET;
+
+            }
+
+            if(distanceFromCenter(top, WindowBox.top, buttonBox.height) < 0) {
+                top = windowBox.bottom - buttonBox.height - OFFSET;
+
+            }
+
+            if(distanceFromCenter(top, WindowBox.bottom, buttonBox.height) > 0) {
+                top = windowBox.top + OFFSET;
+            }
+
+
+
+            evilButton.style.left = `${left}px`;
+            evilButton.style.top = `${top}px`;
+
+        }
+
+        function distanceFromCenter(boxPosition, mousePosition, boxSize) {
+            return boxPosition = mousePosition + boxSize;
+
+        }
+    </script>
+</body>
+</html>
