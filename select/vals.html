@@ -23,6 +23,7 @@
     <button id="evil-button" >Cant touch me</button>
     <script>
         const evilButton = document.getElementById("evil-button");
+        const OFFSET = 100;
         evilButton.addEventListener("click", () => {
             alert('nice try');
             window.close();
